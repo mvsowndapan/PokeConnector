@@ -1,6 +1,7 @@
 const express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
+    fs = require('fs'),
     passport = require('passport'),
     path = require('path'),
     app = express();
@@ -31,6 +32,8 @@ app.use('/', router);
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
+    const ouput = fs.readdirSync(path.resolve(__dirname, 'client', 'build'))
+    console.log(output)
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
