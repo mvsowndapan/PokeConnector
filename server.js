@@ -31,7 +31,7 @@ app.use('/', router);
 // applying static assests
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'));
+    app.use(express.static('client'));
     const ouput = fs.readdirSync(path.resolve(__dirname, 'client', 'build'))
     console.log(output)
     app.get('*', (req, res) => {
